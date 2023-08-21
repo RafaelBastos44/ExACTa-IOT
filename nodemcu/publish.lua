@@ -7,11 +7,12 @@ m:connect("10.201.254.135", 1883, 0,
     
         print("Connected to MQTT broker")
         -- Subscribe to topic
-        client:subscribe("MIC", 0,
-            function(client)
-                print("Subscribed to topic MIC")
-            end
-        )
+        --client:subscribe("MIC", 0,
+            --function(client)
+                --print("Subscribed to topic MIC")
+            --end
+          client:publish("MIC","funfou",0,0)
+
     end,
     
     function(client, reason)
@@ -20,7 +21,7 @@ m:connect("10.201.254.135", 1883, 0,
 )
 
 -- Publish message
---m:publish("MIC", "Bastos Cardoso Mendonca de Rafael",0,0)
+--m:publish("MIC", "funfou",0,0)
 
 -- Disconnect from broker
 --m:disconnect()
