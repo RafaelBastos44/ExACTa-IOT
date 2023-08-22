@@ -3,7 +3,8 @@ import time
 
 from paho.mqtt import client as mqtt_client
 
-broker = '10.201.254.135'
+# broker = '10.201.254.135'
+broker = '10.201.254.86'
 port = 1883
 topic = "MIC"
 # Generate a Client ID with the publish prefix.
