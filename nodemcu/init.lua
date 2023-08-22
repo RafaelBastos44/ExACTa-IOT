@@ -7,3 +7,6 @@ countTHENV = 0
 tempo = 0
 now = 0
 tempoAux1 = 0
+
+broker = "10.201.254.135"
+--broker = "10.201.254.86"

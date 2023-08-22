@@ -5,7 +5,10 @@ timerMic = tmr.create()
 countTHENV = 0
 countMic = 0
 
-m:connect("10.201.254.135", 1883, 0,
+--broker = "10.201.254.135"
+--broker = "10.201.254.86"
+
+m:connect(broker, 1883, 0,
     function(client)
     
         print("Connected to MQTT broker")

@@ -1,15 +1,3 @@
---[[
-
-
-STATION = wifi.STATION
-
-MQTT_CLIENTID = "ESP_001"
-MQTT_HOST = "numeros"
-MQTT_PORT = 8888
-
-print("Config vars loaded")
---]]
-
 MySSID = "PUC@AMERICANAS"
 MyPASSWD = "puc#@meric@n@s"
 

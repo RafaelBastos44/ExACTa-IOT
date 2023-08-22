@@ -21,8 +21,6 @@ function f_timerMic()
         end
     end
 
-    
-
     countMic = countMic +1
 
 end
