@@ -10,31 +10,12 @@ sudo apt-get upgrade
 sudo apt-get install mosquitto mosquitto-clients
 ```
 
-## Configurar o broker mosquitto
-
-Abra o arquivo com algum editor de texto, segue o exemplo abaixo:
-
-```
-sudo nano /etc/mosquitto/conf.d/mosquitto.conf
-```
-
-Adicione as linhas abaixo ao arquivo e o salve:
-
-```
-listener 1883
-allow_anonymous true
-```
-
-Adicione as permissões ao arquivo de configurações:
-
-```
-sudo chmod +rw /etc/mosquitto/conf.d/mosquitto.conf
-```
-
 ## Iniciando o servidor broker
 
+Estando no diretório correto, digitte no terminal para iniciar o broker:
+
 ```
-mosquitto --verbose --config-file /etc/mosquitto/conf.d/mosquitto.conf
+mosquitto --config-file mosquitto.conf
 ```
 
 
