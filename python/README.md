@@ -12,12 +12,17 @@ sudo apt-get install mosquitto mosquitto-clients
 
 ## Iniciando o servidor broker
 
-Estando no diretório correto, digitte no terminal para iniciar o broker:
+Estando no mesmo diretório que o arquivo `mosquitto.conf`, digitte no terminal para iniciar o broker:
 
 ```
 mosquitto --config-file mosquitto.conf
 ```
 
+Para encerrar mosquittos que estejam rodando em segundo plano, digite:
+
+```
+sudo killall mosquitto
+```
 
 ## Testando
 
