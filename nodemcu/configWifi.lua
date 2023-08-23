@@ -1,12 +1,9 @@
-MySSID = "PUC@AMERICANAS"
-MyPASSWD = "puc#@meric@n@s"
-
 station_cfg={}
-station_cfg.ssid="PUC@AMERICANAS"
-station_cfg.pwd="puc#@meric@n@s"
+station_cfg.ssid=MySSID
+station_cfg.pwd=MyPASSWORD
 
 wifi.setmode(wifi.STATION)
-status=wifi.sta.config(station_cfg)
+status = wifi.sta.config(station_cfg)
 
 print(status)
 
@@ -17,7 +14,8 @@ timerWiFi:alarm(1000, tmr.ALARM_AUTO, function()
             print("Connecting to Wi-Fi...")
         else
             print("Connected to Wi-Fi!")
-            timerWiFi:stop(1)
+            timerWiFi:stop()
+            dofile('detectaSomPublish.lua')
         end
     end
 )

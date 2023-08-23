@@ -12,7 +12,6 @@ end
 timer1 = tmr.create()
 
 timer1:register(1000,tmr.ALARM_AUTO,f_timer1)
---timer1:start()
 
 print('timer1 iniciado.')
 print('led piscando')
