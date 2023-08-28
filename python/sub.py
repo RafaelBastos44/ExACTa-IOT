@@ -10,7 +10,7 @@ file = open(file_path,"a")
 
 broker = 'localhost'
 port = 1883
-topic = "MIC"
+topic = "MIC_LOG"
 # Generate a Client ID with the subscribe prefix.
 client_id = f'subscribe-{random.randint(0, 100)}'
 # username = 'emqx'

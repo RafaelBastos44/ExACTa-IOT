@@ -1,4 +1,5 @@
 
+
 function f_timerMicPub()
     
     valEnv = adc.read(0)
@@ -10,13 +11,14 @@ function f_timerMicPub()
     if countMicPub % 50 == 0 then
         message = "R"..countTHENVPub.." "..valEnv.."B"
         
-        if countTHENVPub >= 25 then
-            gpio.write(led, gpio.HIGH)
+        if countTHENVPub >= 50 * RTH then
+            m:publish("MIC", message,2,0)
+            --gpio.write(led, gpio.HIGH)
         else
-            gpio.write(led, gpio.LOW)
+            --gpio.write(led, gpio.LOW)
         end
 
-        if m:publish("MIC", message,2,0) then
+        if m:publish("MIC_LOG", message,2,0) then
           print("Mensagem '"..message.."' enviada")
         else
           print("Erro ao enviar mensagem")
