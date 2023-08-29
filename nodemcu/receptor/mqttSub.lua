@@ -35,6 +35,10 @@ function rec_message(client,topic,message)
 end
 
 function conecta_cliente()
+    if m ~= nil then
+        m:on("offline",function() end)
+        m:close()
+    end
     m = mqtt.Client("nodemcuRec", 120)
     m:on("offline",offline)
     m:on("message",rec_message)
@@ -43,12 +47,12 @@ end
 
 function conexao_sucesso(client)
     print("Connected to MQTT broker")
-    --client:subscribe("MIC", 0, function () print("Subescrito") end)
+    client:subscribe("MIC", 0, function () print("Subescrito") end)
 end
 
 function conexao_falha(client, reason)
     print("Failed to connect to MQTT broker: " .. reason)
-    timerFalha:start()
+    client:close()
 end
 
 function offline(client)
