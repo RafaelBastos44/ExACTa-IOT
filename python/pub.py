@@ -2,7 +2,7 @@ import random
 import time
 
 from paho.mqtt import client as mqtt_client
-
+from time import sleep
 # broker = '10.201.254.135'
 broker = '10.201.254.86'
 port = 1883
@@ -53,3 +53,15 @@ def run():
 if __name__ == '__main__':
     run()
 
+def envia(seg):
+    client = connect_mqtt()
+    client.loop_start()
+    for i in range(seg):
+        print(i)
+        client.publish("MIC", "R25 30B")
+        sleep(0.5)
+        client.publish("MIC", "R25 30B")
+        sleep(0.5)
+    client.loop_stop()
+
+    

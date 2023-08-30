@@ -43,7 +43,7 @@ function f_timerTrig()
         end
 
         
-        --print(l.."     "..d)
+        print(l.."     "..d)
         
         last = lista_time[i]
         last_l = lista_level[i]
