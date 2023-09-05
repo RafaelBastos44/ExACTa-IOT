@@ -1,12 +1,22 @@
-nec = dofile("irsend.lua").nec
-nec2 = dofile("irsend.lua").nec2
-irar = dofile("irsend2.lua").irar
+--nec = dofile("irsend.lua").nec
+--nec2 = dofile("irsend.lua").nec2
+
+nec1={}
+nec1.delaysTime={  9000,  4500,       560, 560 ,1600, 16000}
+nec1.bitsLen=32
+nec1.data={}
+
+function nec(code)
+    nec1.data[1]=code
+    gpio.irsend(nec1.data,nec1.bitsLen, nec1.delaysTime,1)
+end
+
 
 function f_timerLed()
     print("LED apagado")
-    nec(pin_send, IR_OFF)
+    nec(IR_OFF)
     tmr.delay(30000)
-    nec(pin_send, IR_OFF)
+    nec(IR_OFF)
     gpio.write(pin_led, gpio.LOW)
     countRGB = 0
     flagLed = false
@@ -14,6 +24,7 @@ end
 
 
 function f_timerFalha()
+    print("Falha")
     if wifi.sta.getip() ~= nil then
         conecta_cliente()
     else
@@ -32,6 +43,8 @@ timerFalha = tmr.create()
 timerFalha:register(1000, tmr.ALARM_SEMI, f_timerFalha)
 
 
+
+
 function rec_message(client,topic,message)
     print(topic.." "..message)
     if topic == "MIC" then
@@ -40,39 +53,40 @@ function rec_message(client,topic,message)
             if not flagLed then
                 old = tmr.now()
                 flagLed = true
-                --print("LIGADO")
-                nec(pin_send, IR_ON)
+                print("LIGADO")
+                nec(IR_ON)
                 tmr.delay(30000)
-                nec(pin_send, IR_B7)
+                nec(IR_B7)
             elseif tempSeg > 5 then
                 if tempSeg < 10 then
-                    nec(pin_send, IR_ON)
+                    nec(IR_ON)
                     tmr.delay(30000)
-                    nec(pin_send, IR_R)
-                    --print("Vermelhoooooooooooooooooo")
+                    nec(IR_R)
+                    print("Vermelhoooooooooooooooooo")
                 else
                     if countRGB % 16 == 0 then
-                        nec(pin_send, IR_ON)
+                        nec(IR_ON)
                         tmr.delay(30000)
-                        nec(pin_send, IR_SMOOTH)
-                        --print("SMOOOOOOOOOOOOOOOTH")
+                        nec(IR_SMOOTH)
+                        print("SMOOOOOOOOOOOOOOOTH")
                     end
                     countRGB = countRGB + 1
                 end
             else
-                nec(pin_send, IR_ON)
+                nec(IR_ON)
                 tmr.delay(30000)
-                nec(pin_send, IR_B7)
+                nec(IR_B7)
             end
             
             gpio.write(pin_led, gpio.HIGH)
+            timerLed:stop()
             timerLed:start(true)
-            print("LED aceso")
+            --print("LED aceso")
             
         end
     elseif topic == "NEC" then
         cmd = tonumber(message)
-        nec(pin_send, cmd)
+        nec(cmd)
     elseif topic == "NEC2" then
         cmd = tonumber(message)
         nec2(pin_send, cmd)
@@ -80,11 +94,11 @@ function rec_message(client,topic,message)
         code1 = 0xb24d
         code2 = 0x7b84e01f
         print("IRAR")
-        irar(pin_send, code1, code2)
     end
 end
 
 function conecta_cliente()
+    print("Conectando cliente")
     if m ~= nil then
         m:on("offline",function() end)
         m:close()
