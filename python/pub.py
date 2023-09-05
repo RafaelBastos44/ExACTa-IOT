@@ -64,4 +64,8 @@ def envia(seg):
         sleep(0.5)
     client.loop_stop()
 
-    
+def envia2(topic,msg):
+    client = connect_mqtt()
+    client.loop_start()
+    client.publish(topic, msg)
+    client.loop_stop()

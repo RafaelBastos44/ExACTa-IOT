@@ -1,5 +1,6 @@
 nec = dofile("irsend.lua").nec
 nec2 = dofile("irsend.lua").nec2
+irar = dofile("irsend2.lua").irar
 
 function f_timerLed()
     print("LED apagado")
@@ -75,6 +76,11 @@ function rec_message(client,topic,message)
     elseif topic == "NEC2" then
         cmd = tonumber(message)
         nec2(pin_send, cmd)
+    elseif topic == "IRAR" then
+        code1 = 0xb24d
+        code2 = 0x7b84e01f
+        print("IRAR")
+        irar(pin_send, code1, code2)
     end
 end
 
@@ -94,6 +100,7 @@ function conexao_sucesso(client)
     client:subscribe("MIC", 0, function (client) print("Inscrito") end)
     client:subscribe("NEC", 0, function (client) print("Inscrito") end)
     client:subscribe("NEC2", 0, function (client) print("Inscrito") end)
+    client:subscribe("IRAR", 0, function (client) print("Inscrito") end)
 end
 
 function conexao_falha(client, reason)

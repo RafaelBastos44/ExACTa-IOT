@@ -14,4 +14,4 @@ broker = "10.201.254.86"
 
 dofile("IR_codes.lua")
 
-dofile('mqttSub.lua')
+--dofile('mqttSub.lua')

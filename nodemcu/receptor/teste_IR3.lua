@@ -7,12 +7,17 @@ OFF = (ON+1)%2
 pin_rec=4
 
 function f_timerTrig()
-    msg = ""
-    last = lista_time[1]
-    last_l = lista_level[1]
-    ti=0
-    tf=0
-    somad=0
+    local msg = ""
+    local l
+    local d
+    local last = lista_time[1]
+    local last_l = lista_level[1]
+    local ti=0
+    local tf=0
+    local somad=0
+
+    --tmr.delay(5*1000*1000)
+    
     for i = 1,c do
         l = lista_level[i]
         d = lista_time[i] - last
@@ -43,7 +48,9 @@ function f_timerTrig()
         end
 
         
-        print(l.."     "..d)
+        --print(l.."     "..d)
+
+        --tmr.delay(100*1000)
         
         last = lista_time[i]
         last_l = lista_level[i]
@@ -57,7 +64,7 @@ end
 
 
 timerTrig = tmr.create()
-timerTrig:register(1000,tmr.ALARM_SEMI,f_timerTrig)
+timerTrig:register(500,tmr.ALARM_SEMI,f_timerTrig)
 
 
 c=0
