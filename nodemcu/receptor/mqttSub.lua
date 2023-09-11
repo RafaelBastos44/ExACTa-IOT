@@ -102,8 +102,8 @@ function rec_message(client,topic,message)
         nec2(cmd)
     elseif topic == "IRAR" then
         dofile("IR_teste.lua")
-        code1 = 0xb24d
-        code2 = 0x7b84e01f
+        --code1 = 0xb24d
+        --code2 = 0x7b84e01f
         print("IRAR")
     end
 end

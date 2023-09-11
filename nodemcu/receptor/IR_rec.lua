@@ -1,8 +1,8 @@
 
 -- delaysTime={timeOn,timeOff,pulseBurst, low, high, pulseBurst}
-delaysTime = {  4000,  4500,       560, 560 ,1600}
+delaysTime = {  4000,  4500,       410, 670 ,1770}
+--delaysTime={  4000,  4500,       560, 560 ,1600}
 tolerancias = {  1000,  500,       100, 100 ,300}
-
 
 
 lista_time = {}
@@ -25,7 +25,7 @@ function f_timerTrig()
     local dt=delaysTime
     local tol=tolerancias
 
-    --tmr.delay(5*1000*1000)
+    tmr.delay(1*1000*1000)
     
     for i = 1,c do
         l = lista_level[i]
@@ -36,6 +36,7 @@ function f_timerTrig()
         if l == ON then
             if d > dt[2]-tol[2] and d < dt[2]+tol[2] then
                 msg=msg.."Y"
+                --print(l.."     "..d)
                 --ti = lista_time[i]
             elseif d > dt[4]-tol[4] and d < dt[4]+tol[4] then
                 msg=msg.."0"
@@ -45,13 +46,16 @@ function f_timerTrig()
                 tf = lista_time[i]
             else
                 msg=msg.."E"
+                --print(l.."     "..d)
             end
         else
             if d > dt[1]-tol[1] and d < dt[1]+tol[1] then
                 msg=msg.."X"
+                --print(l.."     "..d)
                 ti = lista_time[i]
             elseif not(d > dt[3]-tol[3] and d < dt[3]+tol[3]) then
                 msg=msg.."E"
+                --print(l.."     "..d)
             end
 
         end
@@ -73,7 +77,7 @@ end
 
 
 timerTrig = tmr.create()
-timerTrig:register(500,tmr.ALARM_SEMI,f_timerTrig)
+timerTrig:register(1000,tmr.ALARM_SEMI,f_timerTrig)
 
 
 c=0
