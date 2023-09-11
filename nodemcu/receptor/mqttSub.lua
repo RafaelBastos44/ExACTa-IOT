@@ -1,22 +1,32 @@
---nec = dofile("irsend.lua").nec
---nec2 = dofile("irsend.lua").nec2
 
-nec1={}
-nec1.delaysTime={  9000,  4500,       560, 560 ,1600, 16000}
-nec1.bitsLen=32
-nec1.data={}
-
-function nec(code)
-    nec1.data[1]=code
-    gpio.irsend(nec1.data,nec1.bitsLen, nec1.delaysTime,1)
+function nec1(code)
+    local ac={}
+    -- delaysTime={timeOn,timeOff,pulseBurst, low, high, pulseBurst}
+    ac.delaysTime={  9000,  4500,       560, 560 ,1600, 16000}
+    ac.bitsLen=32
+    ac.data={}
+    ac.data[1]=code
+    
+    gpio.irsend(ac.data,ac.bitsLen, ac.delaysTime,1)
 end
 
 
+function nec2(code)
+    local ac={}
+    -- delaysTime={timeOn,timeOff,pulseBurst, low, high, pulseBurst}
+    ac.delaysTime={  4000,  4500,       560, 560 ,1600, 16000}
+    ac.bitsLen=32
+    ac.data={}
+    ac.data[1]=code
+    
+    gpio.irsend(ac.data,ac.bitsLen, ac.delaysTime,1)
+end
+
 function f_timerLed()
     print("LED apagado")
-    nec(IR_OFF)
+    nec1(IR_OFF)
     tmr.delay(30000)
-    nec(IR_OFF)
+    nec1(IR_OFF)
     gpio.write(pin_led, gpio.LOW)
     countRGB = 0
     flagLed = false
@@ -54,28 +64,28 @@ function rec_message(client,topic,message)
                 old = tmr.now()
                 flagLed = true
                 print("LIGADO")
-                nec(IR_ON)
+                nec1(IR_ON)
                 tmr.delay(30000)
-                nec(IR_B7)
+                nec1(IR_B7)
             elseif tempSeg > 5 then
                 if tempSeg < 10 then
-                    nec(IR_ON)
+                    nec1(IR_ON)
                     tmr.delay(30000)
-                    nec(IR_R)
+                    nec1(IR_R)
                     print("Vermelhoooooooooooooooooo")
                 else
                     if countRGB % 16 == 0 then
-                        nec(IR_ON)
+                        nec1(IR_ON)
                         tmr.delay(30000)
-                        nec(IR_SMOOTH)
+                        nec1(IR_SMOOTH)
                         print("SMOOOOOOOOOOOOOOOTH")
                     end
                     countRGB = countRGB + 1
                 end
             else
-                nec(IR_ON)
+                nec1(IR_ON)
                 tmr.delay(30000)
-                nec(IR_B7)
+                nec1(IR_B7)
             end
             
             gpio.write(pin_led, gpio.HIGH)
@@ -86,11 +96,12 @@ function rec_message(client,topic,message)
         end
     elseif topic == "NEC" then
         cmd = tonumber(message)
-        nec(cmd)
+        nec1(cmd)
     elseif topic == "NEC2" then
         cmd = tonumber(message)
-        nec2(pin_send, cmd)
+        nec2(cmd)
     elseif topic == "IRAR" then
+        dofile("IR_teste.lua")
         code1 = 0xb24d
         code2 = 0x7b84e01f
         print("IRAR")
