@@ -15,4 +15,4 @@ broker = "10.201.254.86"
 dofile("IR_codes2.lua")
 
 --dofile('mqttSub.lua')
---dofile('configWifi.lua')
+dofile('configWifi.lua')
