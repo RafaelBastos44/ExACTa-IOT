@@ -26,30 +26,15 @@ function irAr(codeStr)
     local ac={}
     local ac1={}
     local ac2={}
-    local valDelay=17000
-    local codeStr1="0xff007f8022dd"
+    
     -- delaysTime={timeOn,timeOff,pulseBurst, low, high, pulseBurst}
     ac.delaysTime={  4000,  4500,       410, 670 ,1770, 5330}
     ac.bitsLen=48
     ac.data={}
     ac.data[2]=tonumber("0x"..codeStr:sub(3,6))
     ac.data[1]=tonumber("0x"..codeStr:sub(7))
-
-    ac1.data={}
-    ac1.data[2]=tonumber("0x"..codeStr1:sub(3,6))
-    ac1.data[1]=tonumber("0x"..codeStr1:sub(7))
-
-    ac2.data={}
-    ac2.data[2]=0
-    ac2.data[1]=0
     
-    --now1=tmr.now()
     gpio.irsend(ac.data,ac.bitsLen, ac.delaysTime,2)
-    --tmr.delay(valDelay)
-    --gpio.irsend(ac1.data,ac.bitsLen, ac.delaysTime,1)
-    --tmr.delay(valDelay)
-    --gpio.irsend(ac2.data,ac.bitsLen, ac.delaysTime,1)
-    --now2=tmr.now()-now1
 
     print(now2)
     
@@ -75,71 +60,30 @@ function f_timerFalha()
     end
 end
 
-flagLed = false
-countRGB = 0
-old = 0
-
 timerLed = tmr.create()                          
 timerLed:register(5000, tmr.ALARM_SEMI, f_timerLed)
 
 timerFalha = tmr.create()
 timerFalha:register(1000, tmr.ALARM_SEMI, f_timerFalha)
 
-
-
-
 function rec_message(client,topic,message)
     print(topic.." "..message)
     gpio.write(pin_led,gpio.HIGH)
-    if topic == "MIC" then
-        if message:sub(1,1) == "R" and message:sub(-1,-1) == "B" then
-            local tempSeg = (tmr.now() - old)/1000000
-            if not flagLed then
-                old = tmr.now()
-                flagLed = true
-                print("LIGADO")
-                nec1(IR_ON)
-                tmr.delay(30000)
-                nec1(IR_B7)
-            elseif tempSeg > 5 then
-                if tempSeg < 10 then
-                    nec1(IR_ON)
-                    tmr.delay(30000)
-                    nec1(IR_R)
-                    print("Vermelhoooooooooooooooooo")
-                else
-                    if countRGB % 16 == 0 then
-                        nec1(IR_ON)
-                        tmr.delay(30000)
-                        nec1(IR_SMOOTH)
-                        print("SMOOOOOOOOOOOOOOOTH")
-                    end
-                    countRGB = countRGB + 1
-                end
-            else
-                nec1(IR_ON)
-                tmr.delay(30000)
-                nec1(IR_B7)
-            end
-            
-            gpio.write(pin_led, gpio.HIGH)
-            timerLed:stop()
-            timerLed:start(true)
-            --print("LED aceso")
-            
-        end
-    elseif topic == "NEC" then
+    
+    if topic == "NEC" then
         cmd = tonumber(message)
         nec1(cmd)
     elseif topic == "NEC2" then
         cmd = tonumber(message)
         nec2(cmd)
-    elseif topic == "IRAR" then
+    elseif topic == "IRARA" then
+        gpio.write(pin_sendA,gpio.HIGH)
         irAr(message)
-        --dofile("IR_teste.lua")
-        --code1 = 0xb24d
-        --code2 = 0x7b84e01f
-        print("IRAR")
+        gpio.write(pin_sendA,gpio.LOW)
+    elseif topic == "IRARB" then
+        gpio.write(pin_sendB,gpio.HIGH)
+        irAr(message)
+        gpio.write(pin_sendB,gpio.LOW)
     end
     gpio.write(pin_led,gpio.LOW)
 end
@@ -158,10 +102,10 @@ end
 
 function conexao_sucesso(client)
     print("Connected to MQTT broker")
-    client:subscribe("MIC", 0, function (client) print("Inscrito") end)
     client:subscribe("NEC", 0, function (client) print("Inscrito") end)
     client:subscribe("NEC2", 0, function (client) print("Inscrito") end)
-    client:subscribe("IRAR", 0, function (client) print("Inscrito") end)
+    client:subscribe("IRARA", 0, function (client) print("Inscrito") end)
+    client:subscribe("IRARB", 0, function (client) print("Inscrito") end)
     gpio.write(pin_led,gpio.LOW)
 end
 
