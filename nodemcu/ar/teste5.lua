@@ -1,0 +1,1 @@
+dofile("irsend2.lua").nec(4, 0x00ff00ff)
