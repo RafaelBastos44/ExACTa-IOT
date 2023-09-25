@@ -1,5 +1,6 @@
 .ipynb_checkpoints/
 __pycache__/
 envIno/
+env/
 
 saida_serial.csv

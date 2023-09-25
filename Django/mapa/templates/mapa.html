@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Lab</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .mapa {
+            position: relative;
+            top: 20px;
+            left: 2vw;
+            width: 96vw; /* Ajuste a largura do mapa conforme necessário */
+            height: 100vw; /*Ajuste a altura do mapa conforme necessário */
+        }
+
+        .contorno{
+            position: absolute;
+            width: 100%;
+            padding-bottom: 40%;
+            border: 2px solid black;
+        }
+
+        .paredeY{
+            position: absolute;
+            width: 2px ;
+            height: 100%;
+            background-color: black;
+        }
+
+        .paredeX{
+            position: absolute;
+            width: 100% ;
+            height: 2px;
+            background-color: black;
+        }
+
+        .arCondicionado{
+            position: absolute;
+            width: 5%;
+            padding-bottom: 5%;
+            background-color: rgba(150,150,150,0.4);
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .arCondicionado:hover {
+            background-color: rgba(0,50,255,0.4);
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1 style="text-align: center;">Mapa do Lab</h1>
+
+    <div class="mapa">
+        <div class="contorno" >
+            <div class="paredeY" style="top: 0px; left: 95%; height: 20% " ></div>
+            <div class="paredeY" style="top: 0px; left: 60%; height: 20% " ></div>
+            <div class="paredeY" style="top: 0px; left: 35%; height: 20% " ></div>
+            <div class="paredeY" style="top: 0px; left: 10%; height: 20% " ></div>
+
+            <div class="paredeX" style="top: 20%; left: 0px" ></div>
+
+            <a class="arCondicionado" style="top: 3%; left: 20%" href="/mapa/" ></a>
+            <a class="arCondicionado" style="top: 3%; left: 45%" href="/mapa/" ></a>
+            <a class="arCondicionado" style="top: 3%; left: 75%" href="/mapa/" ></a>
+        </div>
+    </div>
+</body>
+</html>
