@@ -20,7 +20,7 @@ def connect_mqtt():
     client.connect(broker, port)
     return client
 
-def envia(topic,msg):
+def envia_msg_mqtt(topic,msg):
     client = connect_mqtt()
     client.loop_start()
     client.publish(topic, msg)

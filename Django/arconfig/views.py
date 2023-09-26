@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from django.http import JsonResponse
 from paho.mqtt import client as mqtt_client
-import arconfig.pub_mqtt as pub
+from arconfig.pub_mqtt import envia_msg_mqtt
 from arconfig.geraIRAR import geraComandoIRAR
 
 def config_ar(request):
@@ -12,8 +12,12 @@ def config_ar(request):
         # print(valor)
         code = geraComandoIRAR(ligado="OFF")
         topic = "IRAR%s"%valor
-        pub.envia(topic,code)
-        print("Código: %s enviado para %s"%(code,topic))
+        try:
+            envia_msg_mqtt(topic,code)
+            print("Código: %s enviado para %s"%(code,topic))
+        except:
+            print("Não foi possível enviar o código.")
+            return JsonResponse({'status': 'error'})
 
         return JsonResponse({'status': 'sucesso'})
     else:
