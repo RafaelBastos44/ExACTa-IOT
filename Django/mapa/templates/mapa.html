@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,111 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Lab</title>
 
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        $(".configAr").click(function(e){
-          e.preventDefault();
-          var valor = $(this).data('valor');  // 
-          $.ajax({
-            type: "POST",
-            url: "/arconfig/",
-            data: { 
-              'chaveAr': valor, 
-              'csrfmiddlewaretoken': '{{ csrf_token }}' 
-            },
-            success: function(){
-            //   alert(`Ar ${valor} configurado`);
-            },
-            error: function(){
-              alert("Ocorreu um erro ao realizar o POST.");
-            }
-          });
-        });
-      });
-    </script>
+    
+    <script src="{% static 'script.js' %}"></script>
 
-
-
-
-
-
-
-
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-
-        .mapa {
-            position: relative;
-            top: 20px;
-            left: 2vw;
-            width: 96vw; /* Ajuste a largura do mapa conforme necessário */
-            height: 100vw; /*Ajuste a altura do mapa conforme necessário */
-            font-size: 1vw;
-        }
-
-        .contorno{
-            position: absolute;
-            width: 100%;
-            padding-bottom: 40%;
-            border: 2px solid black;
-        }
-
-        .paredeY{
-            position: absolute;
-            width: 2px ;
-            height: 100%;
-            background-color: black;
-        }
-
-        .paredeX{
-            position: absolute;
-            width: 100% ;
-            height: 2px;
-            background-color: black;
-        }
-
-        .mesa{
-            position:absolute;
-            width: 7.5%;
-            height: 50%;
-            border: 2px solid black;
-        }
-
-        .arCondicionado{
-            position: absolute;
-            width: 5%;
-            padding-bottom: 5%;
-            background-color: rgba(150,150,150,0.4);
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .centro{
-            position: absolute;
-            font-size: 3em;
-            color: rgb(200, 50, 50);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .arCondicionado:hover {
-            background-color: rgba(0,50,255,0.4);
-        }
-
-    </style>
 
 </head>
 <body>
     <h1 style="text-align: center;">Mapa do Lab</h1>
 
     <div class="mapa">
+        
         <div class="contorno" >
             <div class="paredeY" style="top: 0px; left: 95%; height: 20% " ></div>
             <div class="paredeY" style="top: 0px; left: 60%; height: 20% " ></div>
@@ -123,19 +32,24 @@
             <a class="mesa" style="bottom: -2px; left:60%"></a>
             <a class="mesa" style="bottom: -2px; left:80%"></a>
 
-            <a class="arCondicionado configAr" style="top: 3%; left: 20%" href="#" data-valor="H" ><div class="centro">H</div></a>
-            <a class="arCondicionado configAr" style="top: 3%; left: 45%" href="#" data-valor="J" ><div class="centro">J</div></a>
-            <a class="arCondicionado configAr" style="top: 3%; left: 75%" href="#" data-valor="C" ><div class="centro">C</div></a>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 3%; left: 20%" href="#" data-valor="A" ><div class="centro">A</div></button>
+            <div class="modal">
+                <div class="modal-body"> oi </div>
+            </div>
 
-            <a class="arCondicionado configAr" style="top: 35%; left: 2.5%" href="#" data-valor="D" ><div class="centro">D</div></a>
-            <a class="arCondicionado configAr" style="top: 70%; left: 2.5%" href="#" data-valor="E" ><div class="centro">E</div></a>
 
-            <a class="arCondicionado configAr" style="top: 35%; left: 31.5%" href="#" data-valor="F" ><div class="centro">F</div></a>
-            <a class="arCondicionado configAr" style="top: 70%; left: 31.5%" href="#" data-valor="G" ><div class="centro">G</div></a>
-            <a class="arCondicionado configAr" style="top: 35%; left: 51.5%" href="#" data-valor="A" ><div class="centro">A</div></a>
-            <a class="arCondicionado configAr" style="top: 70%; left: 51.5%" href="#" data-valor="I" ><div class="centro">I</div></a>
-            <a class="arCondicionado configAr" style="top: 35%; left: 71.5%" href="#" data-valor="B" ><div class="centro">B</div></a>
-            <a class="arCondicionado configAr" style="top: 70%; left: 71.5%" href="#" data-valor="K" ><div class="centro">K</div></a>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 3%; left: 45%" href="#" data-valor="B" ><div class="centro">B</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 3%; left: 75%" href="#" data-valor="C" ><div class="centro">C</div></button>
+
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 35%; left: 2.5%" href="#" data-valor="D" ><div class="centro">D</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 70%; left: 2.5%" href="#" data-valor="E" ><div class="centro">E</div></button>
+
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 35%; left: 31.5%" href="#" data-valor="F" ><div class="centro">F</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 70%; left: 31.5%" href="#" data-valor="G" ><div class="centro">G</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 35%; left: 51.5%" href="#" data-valor="H" ><div class="centro">H</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 70%; left: 51.5%" href="#" data-valor="I" ><div class="centro">I</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 35%; left: 71.5%" href="#" data-valor="J" ><div class="centro">J</div></button>
+            <button id="botaoAr" class="arCondicionado configAr" style="top: 70%; left: 71.5%" href="#" data-valor="K" ><div class="centro">K</div></button>
         </div>
     </div>
 </body>
