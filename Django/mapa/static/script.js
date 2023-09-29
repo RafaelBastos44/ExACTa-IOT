@@ -68,9 +68,12 @@ $(document).ready(function () {
     }
 
     const csrftoken = getCookie('csrftoken');
+    const modal = document.getElementById('configModal');
+
     console.log("CSRF Token:", csrftoken);
 
-    $(".configAr").click(function (e) {
+    $(".arCondicionado").click(function (e) {
+        modal.style.display = 'block';
         console.log(csrftoken);
         e.preventDefault();
         var valor = $(this).data('valor');  // 

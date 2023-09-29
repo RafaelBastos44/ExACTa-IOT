@@ -54,7 +54,8 @@ body {
 
 .centro{
     position: absolute;
-    font-size: 3em;
+    /* font-size: 3em; */
+    font-size: 3vw;
     color: rgb(200, 50, 50);
     top: 50%;
     left: 50%;
@@ -74,10 +75,10 @@ body {
     border-radius: 10px;
     z-index: 10;
     background-color: white;
-    width: 80%;
-    height: 80%;
-    max-width: 70vh;
-    /* max-height: 80%; */
+    width: 12cm;
+    height: 10cm;
+    max-width: 70vw;
+    max-height: 80vh;
     font-size: 100%;
 }
 
@@ -120,4 +121,8 @@ body {
     background-color: #fff;
     color: #0066cc;
     border: solid 2px #0066cc;
+}
+
+#configModal {
+    display: none;
 }
