@@ -18,6 +18,19 @@
     <h1 style="text-align: center;">Mapa do Lab</h1>
 
     <div class="mapa">
+        <div class="modal">
+            <div class="slider">
+                <label for="temp">Temperatura do ar-condicionado A: </label>
+                <input type="range" name="temp" name="Temperatura" min="17" max="30"/>
+                <label for="cars">Escolha um modo</label>
+                <select name="Modo" id="modo">
+                    <option value="COOL">Cool</option>
+                    <option value="FAN">Fan</option>
+                    <option value="DRY">Dry</option>
+                    <option value="HEAT">Aquecedor</option>
+                </select>
+            </div>
+        </div>
         
         <div class="contorno" >
             <div class="paredeY" style="top: 0px; left: 95%; height: 20% " ></div>
@@ -33,9 +46,7 @@
             <a class="mesa" style="bottom: -2px; left:80%"></a>
 
             <button id="botaoAr" class="arCondicionado configAr" style="top: 3%; left: 20%" href="#" data-valor="A" ><div class="centro">A</div></button>
-            <div class="modal">
-                <div class="modal-body"> oi </div>
-            </div>
+            
 
 
             <button id="botaoAr" class="arCondicionado configAr" style="top: 3%; left: 45%" href="#" data-valor="B" ><div class="centro">B</div></button>

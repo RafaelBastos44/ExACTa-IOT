@@ -10,7 +10,6 @@ body {
     left: 2vw;
     width: 96vw; /* Ajuste a largura do mapa conforme necessário */
     height: 100vw; /*Ajuste a altura do mapa conforme necessário */
-    font-size: 1vw;
 }
 
 .contorno{
@@ -18,6 +17,7 @@ body {
     width: 100%;
     padding-bottom: 40%;
     border: 2px solid black;
+    font-size: 1vw;
 }
 
 .paredeY{
@@ -72,4 +72,11 @@ body {
     transform: translate(-50%, -50%);
     border: 1px solid black;
     border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    max-width: 70vh;
+    /* max-height: 80%; */
+    font-size: 100%;
 }
