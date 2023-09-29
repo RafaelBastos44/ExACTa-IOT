@@ -1,3 +1,55 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const decreaseButton = document.getElementById('decrease');
+    const increaseButton = document.getElementById('increase');
+    const numberInput = document.getElementById('number');
+    const minValue = parseInt(numberInput.getAttribute('min'));
+    const maxValue = parseInt(numberInput.getAttribute('max'));
+
+    decreaseButton.addEventListener('click', function () {
+        decreaseNumber();
+    });
+
+    increaseButton.addEventListener('click', function () {
+        increaseNumber();
+    });
+
+    numberInput.addEventListener('blur', function () {
+        validateNumber();
+    });
+
+    function decreaseNumber() {
+        let currentValue = parseInt(numberInput.value);
+
+        if (currentValue > minValue) {
+            currentValue--;
+            numberInput.value = currentValue;
+        }
+    }
+
+    function increaseNumber() {
+        let currentValue = parseInt(numberInput.value);
+
+        if (currentValue < maxValue) {
+            currentValue++;
+            numberInput.value = currentValue;
+        }
+    }
+
+    function validateNumber() {
+        let currentValue = parseInt(numberInput.value);
+
+        if (isNaN(currentValue)) {
+            currentValue = minValue;
+        } else if (currentValue < minValue) {
+            currentValue = minValue;
+        } else if (currentValue > maxValue) {
+            currentValue = maxValue;
+        }
+
+        numberInput.value = currentValue;
+    }
+});
+
 $(document).ready(function () {
 
     function getCookie(name) {

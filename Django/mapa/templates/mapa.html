@@ -19,16 +19,22 @@
 
     <div class="mapa">
         <div class="modal">
-            <div class="slider">
-                <label for="temp">Temperatura do ar-condicionado A: </label>
-                <input type="range" name="temp" name="Temperatura" min="17" max="30"/>
-                <label for="cars">Escolha um modo</label>
+            <div class="number-input">
+                <button id="decrease">-</button>
+                <input type="number" id="number" value="22" min="17" max="30">
+                <button id="increase">+</button>
+            </div>
+            <div class="modo">
+                <label for="modo">Escolha um modo: </label>
                 <select name="Modo" id="modo">
                     <option value="COOL">Cool</option>
                     <option value="FAN">Fan</option>
                     <option value="DRY">Dry</option>
                     <option value="HEAT">Aquecedor</option>
                 </select>
+            </div>
+            <div class="botao-enviar">
+                <button class="botao-submit">Enviar</button>
             </div>
         </div>
         
