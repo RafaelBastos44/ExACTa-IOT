@@ -1,9 +1,86 @@
+var valor;
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    else {
+        console.log("ERRO :(")
+    }
+    return cookieValue;
+}
+
+function enviaConfiguracao() {
+    const numberInput = document.getElementById('number');
+    const modoInput = document.getElementById('modo');
+
+    dados = {
+        'idAr': valor,
+        'tempAr': parseInt(numberInput.value),
+        'modoAr': modoInput.value
+    };
+
+    fetch('/arconfig/', {
+        method: 'POST',
+        body: JSON.stringify(dados),
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrftoken
+        }
+    })
+        .then(function (response) {
+            if (response.ok) {
+                console.log('POST bem-sucedido');
+            } else {
+                console.log('Ocorreu um erro ao realizar o POST.');
+            }
+        })
+        .catch(function (error) {
+            console.log('Erro de rede ao realizar o POST.');
+        });
+}
+
+
+document.addEventListener('click', function (event) {
+    const modal = document.getElementById('configModal');
+    var aresCondicionados = document.getElementsByClassName("arCondicionado");
+
+    for (var i = 0; i < aresCondicionados.length; i++) {
+        var arCondicionado = aresCondicionados[i];
+        if (arCondicionado.contains(event.target)) {
+            valor = arCondicionado.getAttribute('data-valor');
+            console.log(`Clicou no Ar ${valor}`);
+            modal.style.display = 'flex';
+            return;
+        }
+    }
+
+    if (modal.style.display != 'none') {
+        if (!modal.contains(event.target)) {
+            console.log("Fora do modal");
+            modal.style.display = 'none';
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     const decreaseButton = document.getElementById('decrease');
     const increaseButton = document.getElementById('increase');
     const numberInput = document.getElementById('number');
+    const submitButton = document.getElementById('botao-submit');
+
     const minValue = parseInt(numberInput.getAttribute('min'));
     const maxValue = parseInt(numberInput.getAttribute('max'));
+
+    submitButton.addEventListener('click', enviaConfiguracao);
 
     decreaseButton.addEventListener('click', function () {
         decreaseNumber();
@@ -48,48 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         numberInput.value = currentValue;
     }
-});
 
-$(document).ready(function () {
-
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    const csrftoken = getCookie('csrftoken');
-    const modal = document.getElementById('configModal');
-
-    console.log("CSRF Token:", csrftoken);
-
-    $(".arCondicionado").click(function (e) {
-        modal.style.display = 'flex';
-        console.log(csrftoken);
-        e.preventDefault();
-        var valor = $(this).data('valor');  // 
-        $.ajax({
-            type: "POST",
-            url: "/arconfig/",
-            data: {
-                'chaveAr': valor,
-                'csrfmiddlewaretoken': csrftoken
-            },
-            success: function () {
-                //   alert(`Ar ${valor} configurado`);
-            },
-            error: function () {
-                alert("Ocorreu um erro ao realizar o POST.");
-            }
-        });
-    });
+    csrftoken = getCookie('csrftoken');
+    console.log(`Token: ${csrftoken}`);
 });

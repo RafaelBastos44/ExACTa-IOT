@@ -4,14 +4,18 @@ from django.http import JsonResponse
 from paho.mqtt import client as mqtt_client
 from arconfig.pub_mqtt import envia_msg_mqtt
 from arconfig.geraIRAR import geraComandoIRAR
+import json
 
 def config_ar(request):
     if request.method == 'POST':
-        valor = request.POST.get('chaveAr')
-        # print("configuação")
-        # print(valor)
-        code = geraComandoIRAR(ligado="OFF")
-        topic = "IRAR%s"%valor
+        body = json.loads(request.body)
+        idAr = body['idAr']
+        temperatura = body['tempAr']
+        modo = body['modoAr']
+
+        # code = geraComandoIRAR(ligado="OFF")
+        code = geraComandoIRAR(temp=temperatura, mode=modo)
+        topic = "IRAR%s"%idAr
         try:
             envia_msg_mqtt(topic,code)
             print("Código: %s enviado para %s"%(code,topic))

@@ -101,7 +101,7 @@ body {
     align-items: center;
 }
 
-.botao-submit{
+#botao-submit{
     font-weight: 600;
     font-size: 20px;
     color: #fff;
@@ -116,11 +116,15 @@ body {
     cursor: pointer;
 }
 
-.botao-submit:hover{
+#botao-submit:hover{
     transition : 1000ms;
     padding: 10px 50px;
     transform : translateY(-0px);
     background-color: #fff;
     color: #0066cc;
     border: solid 2px #0066cc;
+}
+
+#configModal {
+    display: none;
 }
