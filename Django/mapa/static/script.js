@@ -73,7 +73,7 @@ $(document).ready(function () {
     console.log("CSRF Token:", csrftoken);
 
     $(".arCondicionado").click(function (e) {
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         console.log(csrftoken);
         e.preventDefault();
         var valor = $(this).data('valor');  // 
