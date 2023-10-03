@@ -18,13 +18,13 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function enviaConfiguracao() {
+function enviaConfiguracao(ligado) {
     const numberInput = document.getElementById('number');
     const modoInput = document.getElementById('modo');
 
     dados = {
         'idAr': idAr,
-        'ligado': 'ON',
+        'ligado': ligado,
         'tempAr': parseInt(numberInput.value),
         'modoAr': modoInput.value
     };
@@ -81,12 +81,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const increaseButton = document.getElementById('increase');
     const numberInput = document.getElementById('number');
     const submitButton = document.getElementById('botao-submit');
+    const offButton = document.getElementById('botao-off');
     const closeModal = document.getElementById('close-modal');
 
     const minValue = parseInt(numberInput.getAttribute('min'));
     const maxValue = parseInt(numberInput.getAttribute('max'));
 
-    submitButton.addEventListener('click', enviaConfiguracao);
+    submitButton.addEventListener('click', function () {
+        enviaConfiguracao("ON")
+    });
+    offButton.addEventListener('click', function () {
+        enviaConfiguracao("OFF")
+    });
 
     decreaseButton.addEventListener('click', function () {
         decreaseNumber();

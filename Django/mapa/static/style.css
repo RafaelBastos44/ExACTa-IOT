@@ -112,25 +112,22 @@ body {
 
 .number-input {
     display: flex;
-    margin-bottom: 10%;
+    /* margin-bottom: 10%; */
 }
 
 .modo{
     display: flex;
-    margin-bottom: 10%;
+    /* margin-bottom: 10%; */
 }
 
-.botao-enviar{
+.botao{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#botao-submit{
     font-weight: 600;
     font-size: 20px;
     color: #fff;
-    background-color: #0066CC;
+    /* background-color: #0066CC; */
     padding: 10px 30px;
     border: none;
     border-radius: 50px;
@@ -141,7 +138,15 @@ body {
     cursor: pointer;
 }
 
-#botao-submit:hover{
+#botao-submit{
+    background-color: #0066CC;
+}
+
+#botao-off{
+    background-color: #cc0000;
+}
+
+.botao:hover{
     transition : 1000ms;
     padding: 10px 50px;
     transform : translateY(-0px);
