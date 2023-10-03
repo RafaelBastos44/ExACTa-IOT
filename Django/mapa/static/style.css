@@ -77,12 +77,22 @@ body {
     width: 80%;
     height: 30%;
     max-width: 70vh;
-    /* max-height: 80%; */
     font-size: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.overlay{
+    position: fixed;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    pointer-events: none;
 }
 
 .number-input {
@@ -126,5 +136,9 @@ body {
 }
 
 #configModal {
+    display: none;
+}
+
+#configOverlay {
     display: none;
 }

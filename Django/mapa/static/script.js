@@ -51,6 +51,7 @@ function enviaConfiguracao() {
 
 document.addEventListener('click', function (event) {
     const modal = document.getElementById('configModal');
+    const overlay = document.getElementById('configOverlay');
     var aresCondicionados = document.getElementsByClassName("arCondicionado");
 
     for (var i = 0; i < aresCondicionados.length; i++) {
@@ -59,6 +60,7 @@ document.addEventListener('click', function (event) {
             valor = arCondicionado.getAttribute('data-valor');
             console.log(`Clicou no Ar ${valor}`);
             modal.style.display = 'flex';
+            overlay.style.display = 'flex';
             return;
         }
     }
@@ -67,6 +69,7 @@ document.addEventListener('click', function (event) {
         if (!modal.contains(event.target)) {
             console.log("Fora do modal");
             modal.style.display = 'none';
+            overlay.style.display = 'none';
         }
     }
 });
