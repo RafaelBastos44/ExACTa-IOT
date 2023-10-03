@@ -54,7 +54,7 @@ body {
 
 .centro{
     position: absolute;
-    font-size: 3em;
+    font-size: 3vw;
     color: rgb(200, 50, 50);
     top: 50%;
     left: 50%;
@@ -74,9 +74,10 @@ body {
     border-radius: 10px;
     z-index: 10;
     background-color: white;
-    width: 80%;
-    height: 30%;
-    max-width: 70vh;
+    width: 24pc;
+    height: 20pc;
+    max-width: 70vw;
+    max-height: 80%;
     font-size: 100%;
     /* display: flex; */
     display: none;
@@ -112,12 +113,10 @@ body {
 
 .number-input {
     display: flex;
-    /* margin-bottom: 10%; */
 }
 
 .modo{
     display: flex;
-    /* margin-bottom: 10%; */
 }
 
 .botao{
@@ -127,7 +126,6 @@ body {
     font-weight: 600;
     font-size: 20px;
     color: #fff;
-    /* background-color: #0066CC; */
     padding: 10px 30px;
     border: none;
     border-radius: 50px;
