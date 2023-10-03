@@ -19,22 +19,28 @@
 
     <div class="mapa">
         <div id="configModal" class="modal">
-            <div class="number-input">
-                <button id="decrease">-</button>
-                <input type="number" id="number" value="22" min="17" max="30">
-                <button id="increase">+</button>
+            <div class="modal-header">
+                <div> Ar condicionado A </div>
+                <button class="close-button">&times;</button>
             </div>
-            <div class="modo">
-                <label for="modo">Escolha um modo: </label>
-                <select name="Modo" id="modo">
-                    <option value="COOL">Cool</option>
-                    <option value="FAN">Fan</option>
-                    <option value="DRY">Dry</option>
-                    <option value="HEAT">Aquecedor</option>
-                </select>
-            </div>
-            <div class="botao-enviar">
-                <button id="botao-submit">Enviar</button>
+            <div class="modal-body">
+                <div class="number-input">
+                    <button id="decrease">-</button>
+                    <input type="number" id="number" value="22" min="17" max="30">
+                    <button id="increase">+</button>
+                </div>
+                <div class="modo">
+                    <label for="modo">Escolha um modo: </label>
+                    <select name="Modo" id="modo">
+                        <option value="COOL">Cool</option>
+                        <option value="FAN">Fan</option>
+                        <option value="DRY">Dry</option>
+                        <option value="HEAT">Aquecedor</option>
+                    </select>
+                </div>
+                <div class="botao-enviar">
+                    <button id="botao-submit">Enviar</button>
+                </div>
             </div>
         </div>
         <div id="configOverlay" class="overlay"></div>
