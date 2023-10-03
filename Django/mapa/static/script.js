@@ -24,6 +24,7 @@ function enviaConfiguracao() {
 
     dados = {
         'idAr': idAr,
+        'ligado': 'ON',
         'tempAr': parseInt(numberInput.value),
         'modoAr': modoInput.value
     };

@@ -9,12 +9,13 @@ import json
 def config_ar(request):
     if request.method == 'POST':
         body = json.loads(request.body)
-        idAr = body['idAr']
-        temperatura = body['tempAr']
-        modo = body['modoAr']
+        idAr = body.get('idAr')
+        temperatura = body.get('tempAr')
+        modo = body.get('modoAr')
+        ligado = body.get('ligado')
 
         # code = geraComandoIRAR(ligado="OFF")
-        code = geraComandoIRAR(temp=temperatura, mode=modo)
+        code = geraComandoIRAR(ligado=ligado,temp=temperatura, mode=modo)
         topic = "IRAR%s"%idAr
         try:
             envia_msg_mqtt(topic,code)
