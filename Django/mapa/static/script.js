@@ -1,4 +1,4 @@
-var valor;
+var idAr;
 
 function getCookie(name) {
     let cookieValue = null;
@@ -23,7 +23,7 @@ function enviaConfiguracao() {
     const modoInput = document.getElementById('modo');
 
     dados = {
-        'idAr': valor,
+        'idAr': idAr,
         'tempAr': parseInt(numberInput.value),
         'modoAr': modoInput.value
     };
@@ -50,17 +50,18 @@ function enviaConfiguracao() {
 
 
 document.addEventListener('click', function (event) {
-    const modal = document.getElementById('configModal');
-    const overlay = document.getElementById('configOverlay');
+    const modal = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
     var aresCondicionados = document.getElementsByClassName("arCondicionado");
 
     for (var i = 0; i < aresCondicionados.length; i++) {
         var arCondicionado = aresCondicionados[i];
         if (arCondicionado.contains(event.target)) {
-            valor = arCondicionado.getAttribute('data-valor');
-            console.log(`Clicou no Ar ${valor}`);
+            idAr = arCondicionado.getAttribute('data-idAr');
+            document.getElementById('idAr').textContent = idAr;
+            console.log(`Clicou no Ar ${idAr}`);
             modal.style.display = 'flex';
-            overlay.style.display = 'flex';
+            overlay.style.display = 'block';
             return;
         }
     }
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const increaseButton = document.getElementById('increase');
     const numberInput = document.getElementById('number');
     const submitButton = document.getElementById('botao-submit');
+    const closeModal = document.getElementById('close-modal');
 
     const minValue = parseInt(numberInput.getAttribute('min'));
     const maxValue = parseInt(numberInput.getAttribute('max'));
@@ -95,6 +97,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     numberInput.addEventListener('blur', function () {
         validateNumber();
+    });
+
+    closeModal.addEventListener('click', function () {
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
     });
 
     function decreaseNumber() {
