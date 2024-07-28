@@ -1,8 +1,11 @@
 import random
 from paho.mqtt import client as mqtt_client
 
-broker = '10.201.254.86'
-port = 1883
+# broker = '10.201.254.86'
+# port = 1883
+
+broker = "139.82.100.100" # reativos
+port = 7981 # reativos
 
 client_id = f'publish-{random.randint(0, 1000)}'
 

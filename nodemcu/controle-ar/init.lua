@@ -10,7 +10,7 @@ MySSID = "PUC@AMERICANAS"
 MyPASSWORD="puc#@meric@n@s"
 
 --broker = "10.201.254.135"
-broker = "10.201.254.86"
+-- broker = "10.201.254.86"
 
 
 gpio.write(pin_led,gpio.HIGH)
