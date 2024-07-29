@@ -54,6 +54,7 @@ local send_ir = {
         ac.data[1]=tonumber("0x"..codeStr:sub(7))
         
         gpio.irsend(ac.data,ac.bitsLen, ac.delaysTime,2)
+        print(codeStr)
     end
 }
 

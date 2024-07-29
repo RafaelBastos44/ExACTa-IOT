@@ -19,7 +19,7 @@ def config_ar(request):
         # topic = "IRAR%s"%idAr
         topic = "ExACTa_FIT_AR"
         idNode = "IRAR_01"
-        nIR = 1
+        nIR = 3
 
         msg = f"{client_id},{idNode},IRAR;{nIR};mode={modo};temp={temperatura};ligado={ligado}"
 

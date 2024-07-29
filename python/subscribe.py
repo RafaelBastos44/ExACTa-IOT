@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import queue
 #import data_filter
 
-# mqtt_data_queue = queue.Queue()
+mqtt_data_queue = queue.Queue()
 # Definição de funções
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
@@ -10,13 +10,16 @@ def on_message(client, userdata, message):
     #data_filter.process_data(msg)
 
 def execute_mqtt_subscribe(mqtt_sub_queue):
-    mqttBroker = "127.0.0.1"
+    # mqttBroker = "127.0.0.1"
+    mqttBroker = "139.82.100.100"
+    port = 7981
+    topic = "ExACTa_FIT_AR"
 
     client = mqtt.Client("nodemcuServidor")
-    client.connect(mqttBroker)
+    client.connect(mqttBroker,port)
     client.loop_start()
-    print("Subscribing to topic", "MIC")
-    client.subscribe("MIC")
+    print("Subscribing to topic", topic)
+    client.subscribe(topic)
     client.on_message = on_message
 
     while True:
@@ -29,4 +32,4 @@ def execute_mqtt_subscribe(mqtt_sub_queue):
     client.loop_stop() 
     client.disconnect()
 
-execute_mqtt_subscribe()
+execute_mqtt_subscribe(mqtt_data_queue)

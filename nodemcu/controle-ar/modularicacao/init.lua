@@ -1,4 +1,6 @@
 
+tmr.delay(3000000)
+
 local config = dofile("credentials.lua")
 
 local pin_sendA = 6
@@ -33,5 +35,5 @@ end
 
 
 
-msg1="publish-583,IRAR_01,IRAR;2;mode=COOL;temp=24;ligado=ON"
-maquina.conectado.message(nil,nil,msg1)
+-- msg1="publish-583,IRAR_01,IRAR;2;mode=COOL;temp=24;ligado=ON"
+-- maquina.conectado.message(nil,nil,msg1)

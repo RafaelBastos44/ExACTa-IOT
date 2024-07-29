@@ -66,6 +66,8 @@ local function criaMaquina(consts)
         },
         conectado = {
             message = function(client, topic, message)
+                print(topic)
+                print(message)
                 --[[
                 MSG <- id_origem,id_destino,CMD
                 CMD <- TIPO;N_IR;OPCOES

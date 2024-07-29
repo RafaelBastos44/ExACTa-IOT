@@ -12,7 +12,7 @@ local function conecta_cliente(maquina, consts)
         local estado = consts.estado
         local evento = "connected"
         local f = maquina[estado] and maquina[estado][evento]
-
+        if f ~= nil then f(client,reason) end
       
     end
     
@@ -46,14 +46,5 @@ local function inscreve_topico(client, topic, maquina, consts)
         if f ~= nil then f(client, topic) end
     end)
 end
-    --   print("Conectado ao broker do MQTT")
-    -- for i, topic in ipairs(consts.topics) do
-    --     client:subscribe(topic, 0, function(client)
-    --         local estado = consts.estado
-    --         local evento = "subscribe"
-    --         local f = maquina[estado] and maquina[estado][evento]
-    --         if f ~= nil then f(client, topic) end
-    --     end)
-    -- end
 
     return {inscreve_topico=inscreve_topico, conecta_cliente=conecta_cliente}

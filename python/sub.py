@@ -8,9 +8,14 @@ global file, count
 file_path = "dados.csv"
 file = open(file_path,"a")
 
-broker = 'localhost'
-port = 1883
-topic = "MIC_LOG"
+# broker = 'localhost'
+# port = 1883
+# topic = "MIC_LOG"
+
+broker = "139.82.100.100"
+port = 7981
+topic = "ExACTa_FIT_AR"
+
 # Generate a Client ID with the subscribe prefix.
 client_id = f'subscribe-{random.randint(0, 100)}'
 # username = 'emqx'
