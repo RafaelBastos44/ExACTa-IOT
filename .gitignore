@@ -1,0 +1,9 @@
+.ipynb_checkpoints/
+__pycache__/
+envIno/
+env/
+venv/
+.venv/
+
+saida_serial.csv
+credentials.*

@@ -1,0 +1,104 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Lab</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+    <script src="{% static 'script.js' %}"></script>
+
+</head>
+
+<body>
+    <h1 style="text-align: center;">Mapa do Lab</h1>
+    <h2></h2>
+
+    <div class="mapa">
+        <div id="modal">
+            <div class="modal-header">
+                <div> Ar condicionado <span id="idAr"></span> </div>
+                <button id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="number-input">
+                    <button id="decrease">-</button>
+                    <input type="number" id="number" value="24" min="17" max="30">
+                    <button id="increase">+</button>
+                </div>
+                <p>Escolha um modo:</p>
+                <div class="modo">
+                    <select name="Modo" id="modo">
+                        <option value="COOL">Cool</option>
+                        <option value="FAN">Fan</option>
+                        <option value="DRY">Dry</option>
+                        <option value="HEAT">Aquecedor</option>
+                    </select>
+                </div>
+                <br>
+                <button class="botao" id="botao-submit">Enviar</button>
+                <br>
+                <button class="botao" id="botao-off">OFF</button>
+            </div>
+        </div>
+
+        <div class="contorno">
+            <div class="paredeY" style="top: 0px; left: 95%; height: 20% "></div>
+            <div class="paredeY" style="top: 0px; left: 60%; height: 20% "></div>
+            <div class="paredeY" style="top: 0px; left: 35%; height: 20% "></div>
+            <div class="paredeY" style="top: 0px; left: 10%; height: 100% "></div>
+
+            <div class="paredeX" style="top: 20%; left: 10%; width:90%"></div>
+
+            <a class="mesa" style="bottom: -2px; left:20%"></a>
+            <a class="mesa" style="bottom: -2px; left:40%"></a>
+            <a class="mesa" style="bottom: -2px; left:60%"></a>
+            <a class="mesa" style="bottom: -2px; left:80%"></a>
+
+            <button id="botaoAr" class="arCondicionado" style="top: 3%; left: 20%" href="#" data-idAr="A">
+                <div class="centro">A</div>
+            </button>
+
+            <button id="botaoAr" class="arCondicionado" style="top: 3%; left: 45%" href="#" data-idAr="B">
+                <div class="centro">B</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 3%; left: 75%" href="#" data-idAr="C">
+                <div class="centro">C</div>
+            </button>
+
+            <button id="botaoAr" class="arCondicionado" style="top: 35%; left: 2.5%" href="#" data-idAr="D">
+                <div class="centro">D</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 70%; left: 2.5%" href="#" data-idAr="E">
+                <div class="centro">E</div>
+            </button>
+
+            <button id="botaoAr" class="arCondicionado" style="top: 35%; left: 31.5%" href="#" data-idAr="F">
+                <div class="centro">F</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 70%; left: 31.5%" href="#" data-idAr="G">
+                <div class="centro">G</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 35%; left: 51.5%" href="#" data-idAr="H">
+                <div class="centro">H</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 70%; left: 51.5%" href="#" data-idAr="I">
+                <div class="centro">I</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 35%; left: 71.5%" href="#" data-idAr="J">
+                <div class="centro">J</div>
+            </button>
+            <button id="botaoAr" class="arCondicionado" style="top: 70%; left: 71.5%" href="#" data-idAr="K">
+                <div class="centro">K</div>
+            </button>
+        </div>
+
+        <div id="overlay"></div>
+    </div>
+</body>
+
+</html>

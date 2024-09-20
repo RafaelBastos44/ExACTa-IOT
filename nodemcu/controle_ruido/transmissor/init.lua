@@ -1,0 +1,1 @@
+dofile('detectaSomPublish.lua')
